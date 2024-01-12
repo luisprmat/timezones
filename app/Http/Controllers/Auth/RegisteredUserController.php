@@ -19,12 +19,11 @@ class RegisteredUserController extends Controller
     /**
      * Display the registration view.
      */
-    public function create(Request $request): View
+    public function create(): View
     {
         $timezones = timezone_identifiers_list();
-        $guessedTimezone = User::guessUserTimezoneUsingAPI($request->ip());
 
-        return view('auth.register', compact('timezones', 'guessedTimezone'));
+        return view('auth.register', compact('timezones'));
     }
 
     /**
