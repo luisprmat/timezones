@@ -18,6 +18,7 @@ class ProfileController extends Controller
     {
         return view('profile.edit', [
             'user' => $request->user(),
+            'timezones' => timezone_identifiers_list(),
         ]);
     }
 
@@ -30,6 +31,10 @@ class ProfileController extends Controller
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
+        }
+
+        if ($request->user()->isDirty('timezone')) {
+            $request->user()->timezone = timezone_identifiers_list()[$request->input('timezone', 'UTC')];
         }
 
         $request->user()->save();

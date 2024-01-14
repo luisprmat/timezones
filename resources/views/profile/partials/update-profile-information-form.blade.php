@@ -47,6 +47,14 @@
             @endif
         </div>
 
+        <div>
+            <x-input-label for="timezone" :value="__('Timezone')"/>
+            <x-select-input id="timezone" class="block mt-1 w-full" name="timezone" :options="$timezones"
+                            :selected="old('timezone', array_search($user->timezone, $timezones))"
+                            required/>
+            <x-input-error  class="mt-2" :messages="$errors->get('timezone')"/>
+        </div>
+
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 
