@@ -49,4 +49,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Booking::class);
     }
+
+    public function scheduledNotifications(): HasMany
+    {
+        return $this->hasMany(ScheduledNotification::class);
+    }
 }
